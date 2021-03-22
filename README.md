@@ -1,6 +1,6 @@
-# babel-plugin-transform-es2015-modules-simple-amd [![npm version](https://badge.fury.io/js/babel-plugin-transform-es2015-modules-simple-amd.svg)](https://badge.fury.io/js/babel-plugin-transform-es2015-modules-simple-amd) 
+# babel-plugin-transform-modules-simple-amd-with-default-exports [![npm version](https://badge.fury.io/js/babel-plugin-transform-modules-simple-amd-with-default-exports.svg)](https://badge.fury.io/js/babel-plugin-transform-modules-simple-amd-with-default-exports)
 
-Limited transformer for ECMAScript 2015 modules (AMD)
+Limited transformer for ECMAScript 2015 (and beyond) modules into simplified AMD format.
 
 Converts this code:
 ```js
@@ -18,7 +18,7 @@ define(['/path/to/x', '/path/to/y'], function (x, y) {
 });
 ```
 
-Instead of this one (generated with ``babel-plugin-transform-es2015-modules-amd``):
+Instead of this one (generated with ``@babel/plugin-transform-modules-amd``):
 ```js
 define(['exports', '/path/to/x', '/path/to/y'], function (exports, _x, _y) {
   Object.defineProperty(exports, "__esModule", {
@@ -40,20 +40,12 @@ define(['exports', '/path/to/x', '/path/to/y'], function (exports, _x, _y) {
 });
 ```
 
-Supported features:
-- ``import SPECIFIER from 'PATH'``
-- ``import 'PATH'``
-- ``import {SPECIFIER1, SPECIFIER2 as SPECIFIER3} from 'PATH'``
-- ``export default NODE``
-
-Other features aren't supported.
-
-**Warning**. If no ``import`` or ``export`` are presented in JavaScript file, the plugin does nothing (means it doesn't wrap code with ``define``).
+Forked from this PR that never got merged in: https://github.com/finom/babel-plugin-transform-es2015-modules-simple-amd/pull/10
 
 ## Installation
 
 ```sh
-$ npm install --save-dev babel-plugin-transform-es2015-modules-simple-amd
+$ npm install -D babel-plugin-transform-modules-simple-amd-with-default-exports
 ```
 
 ## Usage
@@ -64,7 +56,7 @@ $ npm install --save-dev babel-plugin-transform-es2015-modules-simple-amd
 
 ```json
 {
-  "plugins": ["transform-es2015-modules-simple-amd"]
+  "plugins": ["babel-plugin-transform-modules-simple-amd-with-default-exports"]
 }
 ```
 
@@ -72,10 +64,10 @@ $ npm install --save-dev babel-plugin-transform-es2015-modules-simple-amd
 
 ```javascript
 require('babel').transform('code', {
-  plugins: ['transform-es2015-modules-simple-amd']
+  plugins: ['babel-plugin-transform-modules-simple-amd-with-default-exports']
 });
 ```
 
 [The same thing for CommonJS](https://github.com/finom/babel-plugin-transform-es2015-modules-simple-commonjs).
 
-Thanks to [RReverser](https://github.com/RReverser/babel-plugin-hello-world).
+Thanks to [finom](https://github.com/finom/babel-plugin-transform-es2015-modules-simple-amd) and [dcleao](https://github.com/finom/babel-plugin-transform-es2015-modules-simple-amd/pull/10).

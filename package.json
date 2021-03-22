@@ -1,8 +1,8 @@
 {
-  "name": "babel-plugin-transform-es2015-modules-simple-amd",
-  "version": "0.3.0",
+  "name": "babel-plugin-transform-modules-simple-amd-with-default-exports",
+  "version": "0.1.0",
   "description": "Simplified imports and exports",
-  "repository": "finom/babel-plugin-transform-es2015-modules-simple-amd",
+  "repository": "git@github.com:AugustsK/babel-plugin-transform-modules-simple-amd.git",
   "license": "MIT",
   "main": "dist/index.js",
   "dependencies": {
