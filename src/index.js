@@ -218,14 +218,15 @@ export default function transformToAmd({types: t}) {
 
           if (isModular) {
           	const processedSources = sources.concat(anonymousSources).map(source => {
-          		if (source.includes(':')) return source; // We leave URLs as is
+              let src = ('' + source);
+          		if (src.indexOf(':') > -1) return source; // We leave URLs as is
 
-				if (source.endsWith('.js')) {
-					return source.slice(0, -3); // We get rid of .js extension
-				}
+				      if ((''+ src).slice(-3) === '.js') {
+					      return src.slice(0, -3); // We get rid of .js extension
+				      }
 
-				return source;
-			});
+				      return source;
+			      });
 
             programPath.node.body = [
               buildModule({
