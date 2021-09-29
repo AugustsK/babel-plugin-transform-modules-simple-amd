@@ -40,9 +40,9 @@ export default function transformToAmd({types: t}) {
                   // export {name as default, ...};
                   // export { default } from ....;
                   // export { default as default } from ....;
-                  
+
                   // Not supported:
-                  // export {name as default, ...} from ....; 
+                  // export {name as default, ...} from ....;
 
                   if(specifier.local.name === "default") {
                     // console.log("export { default as default, ... } from ...;");
@@ -167,7 +167,7 @@ export default function transformToAmd({types: t}) {
                 sources.push(bodyStatementPath.node.source);
                 vars.push(specifiers[0].local);
               } else {
-                
+
                 // Should not be supported this way, imo.
 
                 const importedID = bodyStatementPath.scope.generateUidIdentifier(
@@ -217,6 +217,16 @@ export default function transformToAmd({types: t}) {
           }
 
           if (isModular) {
+          	const processedSources = sources.concat(anonymousSources).map(source => {
+          		if (source.includes(':')) return source; // We leave URLs as is
+
+				if (source.endsWith('.js')) {
+					return source.slice(0, -3); // We get rid of .js extension
+				}
+
+				return source;
+			});
+
             programPath.node.body = [
               buildModule({
                 IMPORT_PATHS: t.arrayExpression(
