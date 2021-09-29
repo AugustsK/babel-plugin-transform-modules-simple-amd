@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-transform-modules-simple-amd-with-default-exports",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Simplified imports and exports",
   "repository": "git@github.com:AugustsK/babel-plugin-transform-modules-simple-amd.git",
   "license": "MIT",

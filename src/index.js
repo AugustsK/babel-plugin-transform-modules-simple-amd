@@ -229,9 +229,7 @@ export default function transformToAmd({types: t}) {
 
             programPath.node.body = [
               buildModule({
-                IMPORT_PATHS: t.arrayExpression(
-                  sources.concat(anonymousSources)
-                ),
+                IMPORT_PATHS: t.arrayExpression(processedSources),
                 IMPORT_VARS: vars,
                 BODY: programPath.node.body,
                 NAMED_IMPORTS: namedImports
