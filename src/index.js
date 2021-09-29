@@ -217,12 +217,17 @@ export default function transformToAmd({types: t}) {
           }
 
           if (isModular) {
-          	const processedSources = sources.concat(anonymousSources).map(source => {
-              let src = ('' + source);
-          		if (src.indexOf(':') > -1) return source; // We leave URLs as is
+          	const processedSources = sources.concat(anonymousSources).map(source => {  
+          		if (source.value.indexOf(':') > -1) return source; // We leave URLs as is
 
-				      if ((''+ src).slice(-3) === '.js') {
-					      return src.slice(0, -3); // We get rid of .js extension
+              const newSource = {
+                ...source
+              };
+
+				      if ((''+ newSource.value).slice(-3) === '.js') {
+					      newSource.value = newSource.value.slice(0, -3); // We get rid of .js extension
+
+                return newSource;
 				      }
 
 				      return source;
